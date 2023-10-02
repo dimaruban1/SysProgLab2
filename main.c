@@ -2,8 +2,7 @@
 #include <malloc.h>
 #include <string.h>
 #include <stdbool.h>
-
-#include "automata//automata.h"
+#include "automata.h"
 
 /// A - alphabet
 /// S - set of states
