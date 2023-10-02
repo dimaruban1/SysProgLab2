@@ -1,0 +1,3 @@
+/home/serg/CLionProjects/SysProgLab2/cmake-build-debug/CMakeFiles/SysProgLab2.dir
+/home/serg/CLionProjects/SysProgLab2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/serg/CLionProjects/SysProgLab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
