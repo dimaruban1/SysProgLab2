@@ -55,11 +55,11 @@ build CMakeFiles/SysProgLab2.dir/main.c.o: C_COMPILER__SysProgLab2_unscanned_Deb
   OBJECT_DIR = CMakeFiles/SysProgLab2.dir
   OBJECT_FILE_DIR = CMakeFiles/SysProgLab2.dir
 
-build CMakeFiles/SysProgLab2.dir/automata/automata.c.o: C_COMPILER__SysProgLab2_unscanned_Debug /home/serg/CLionProjects/SysProgLab2/automata/automata.c || cmake_object_order_depends_target_SysProgLab2
-  DEP_FILE = CMakeFiles/SysProgLab2.dir/automata/automata.c.o.d
+build CMakeFiles/SysProgLab2.dir/automata.c.o: C_COMPILER__SysProgLab2_unscanned_Debug /home/serg/CLionProjects/SysProgLab2/automata.c || cmake_object_order_depends_target_SysProgLab2
+  DEP_FILE = CMakeFiles/SysProgLab2.dir/automata.c.o.d
   FLAGS = -g -std=gnu11 -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/SysProgLab2.dir
-  OBJECT_FILE_DIR = CMakeFiles/SysProgLab2.dir/automata
+  OBJECT_FILE_DIR = CMakeFiles/SysProgLab2.dir
 
 
 # =============================================================================
@@ -69,7 +69,7 @@ build CMakeFiles/SysProgLab2.dir/automata/automata.c.o: C_COMPILER__SysProgLab2_
 #############################################
 # Link the executable SysProgLab2
 
-build SysProgLab2: C_EXECUTABLE_LINKER__SysProgLab2_Debug CMakeFiles/SysProgLab2.dir/main.c.o CMakeFiles/SysProgLab2.dir/automata/automata.c.o
+build SysProgLab2: C_EXECUTABLE_LINKER__SysProgLab2_Debug CMakeFiles/SysProgLab2.dir/main.c.o CMakeFiles/SysProgLab2.dir/automata.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/SysProgLab2.dir
   POST_BUILD = :

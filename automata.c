@@ -3,7 +3,7 @@
 #include <malloc.h>
 #include "automata.h"
 
-int numberOfTransitions; // number of transitions
+int numberOfTransitions;
 struct StateTransition *transitions;
 struct Automata A;
 
@@ -42,17 +42,29 @@ bool constructAutomataFromFile(const char *path){
     return true;
 }
 
-// returns array of next states, NULL if no states ahead\n
+//returns array of next states, NULL if no states ahead\n
 //result size should be passed as 0
 int *processChar(int state, char c, size_t *resultSize){
     int *res = NULL;
-    int count = 0;
+    size_t count = 0;
     for (int i = 0; i < numberOfTransitions; i++){
         struct StateTransition t = transitions[i];
         if (t.stateFrom == state && t.symbol == c){
             count++;
             res = realloc(res, count);
             res[count-1] = t.stateTo;
+        }
+        if (t.stateFrom == state && t.symbol == 'e'){
+            size_t tempResSize = 0;
+            int *tempRes = processChar(t.stateTo, c, &tempResSize);
+            if (tempResSize > 0){
+                count += tempResSize;
+                res = realloc(res, count);
+                size_t offset = count-tempResSize;
+                for (size_t j = offset; j < count; j++){
+                    res[j] = tempRes[j - offset];
+                }
+            }
         }
     }
     *resultSize = count;
@@ -75,7 +87,7 @@ int addMoreReachableStates(bool *statesSet, int pS){
     return newStatesCount;
 }
 
-// checks if given states lead to any final state
+//checks if given states lead to any final state
 bool leadToFinalState(const int *states, size_t size){
     bool *reachableStatesSet = calloc(A.pS, sizeof(bool));
     for (int i = 0; i < size; i++){
