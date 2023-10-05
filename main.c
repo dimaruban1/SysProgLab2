@@ -21,7 +21,7 @@ void processUserInput(char *input){
 
 //by default when called states should be set to null and depth to 0
 bool acceptsW0(char *w0, int *states, int depth, size_t size){
-    if (depth == 0){
+    if (states == NULL){
         states = malloc(sizeof (int));
         states[0] = A.s0;
         return(acceptsW0(w0, states, depth, 1));
@@ -38,7 +38,10 @@ bool acceptsW0(char *w0, int *states, int depth, size_t size){
     }
     for (int i = 0; i < size; i++){
         size_t resultSize = 0;
-        processChar(states[i], w0[depth], &resultSize);
+        int* newStates = processChar(states[i], w0[depth], &resultSize);
+        if (acceptsW0(w0, newStates, depth+1, resultSize)){
+            return true;
+        }
     }
     return false;
 }
@@ -61,7 +64,7 @@ bool processWordRecursion(const int *states, char *w, int depth, size_t size){
 }
 
 int main() {
-    char *PATH = "/home/serg/CLionjProjects/SysProgLab2/automata.txt";
+    char *PATH = "/home/serg/CLionProjects/SysProgLab2/automata.txt";
     char buffer[100];
     while (!constructAutomataFromFile(PATH) && !constructAutomataFromFile(buffer)){
         printf("error reading text file at path: %s\n", PATH);
@@ -85,7 +88,7 @@ int main() {
     printf("enter w0\n");
     fgets(w, sizeof(w), stdin);
     processUserInput(w);
-    if (processWordRecursion(states,w,0,A.pS)){
+    if (processWordRecursion(states,w,0,A.pS) || acceptsW0(w, NULL, 0, 0)){
         printf("word found\n");
     } else {
         printf("word not found\n");
